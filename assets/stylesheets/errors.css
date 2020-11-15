@@ -2,7 +2,7 @@
   font-family: DancingScript;
   font-size: 60px;
   text-align: center;
-  margin-top: 300px;
+  margin-top: 200px;
 }
 
 .back-button {
@@ -22,4 +22,10 @@
   background-color: rgb(3, 34, 96);
   cursor: pointer;
   font-size: 30px;
+}
+
+.embed {
+  margin-top: 50px;
+  text-align: center;
+  display: block;
 }

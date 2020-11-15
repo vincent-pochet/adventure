@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("APP_MAX_THREADS") { 5 } %>
+  timeout: 5000
+  host: <%= ENV['POSTGRES_DEV_HOST'] || ENV['POSTGRES_PORT_5432_TCP_ADDR'] || 'localhost' %>
+  port: <%= ENV['POSTGRES_DEV_PORT'] || ENV['POSTGRES_PORT_5432_TCP_PORT'] || 5432 %>
+
+development:
+  <<: *default
+  username: <%= ENV.fetch("POSTGRES_DEV_USERNAME") { 'postgres' } %>
+  password: <%= ENV["POSTGRES_DEV_PASSWORD"] || '' %>
+  database: adventure-dev
+
+test:
+  <<: *default
+  username: <%= ENV.fetch("POSTGRES_DEV_USERNAME") { 'postgres' } %>
+  password: <%= ENV["POSTGRES_DEV_PASSWORD"] || '' %>
+  database: adventure-test
+
+production:
+  <<: *default
+  url:  <%= ENV["POSTGRES_URL"] || ENV["DATABASE_URL"] %>

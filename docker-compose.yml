@@ -1,0 +1,37 @@
+version: '2'
+
+volumes:
+  adventure_bundle:
+    external: false
+  adventure_pg:
+    external: true
+  adventure_data:
+    external: true
+
+services:
+  adventure:
+    tty: true
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: adventure
+    ports:
+      - 3000:3000
+    depends_on:
+      - "postgres"
+    volumes:
+      - .:/app
+      - adventure_data:/tmp/storage
+      - adventure_bundle:/usr/local/bundle
+    env_file:
+      - .env
+    tmpfs:
+      - /tmp
+
+  postgres:
+    image: sameersbn/postgresql:10-2
+    env_file:
+      - env/.env.postgres
+    volumes:
+      - adventure_pg:/var/lib/postgresql/data

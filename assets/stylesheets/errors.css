@@ -1,0 +1,25 @@
+.error {
+  font-family: DancingScript;
+  font-size: 60px;
+  text-align: center;
+  margin-top: 300px;
+}
+
+.back-button {
+  font-family: Raleway Italic;
+  font-size: 1.333em;
+  font-weight: bold;
+  display: inline-block;
+  margin: 1em 0;
+  padding: 0.4em 0.8em;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-decoration: none;
+  color: #ffffff;
+  border: 0;
+  border-radius: 0.2em;
+  background-color: rgb(3, 34, 96);
+  cursor: pointer;
+  font-size: 30px;
+}

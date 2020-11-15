@@ -23,6 +23,10 @@ class Adventure < Sinatra::Base
     status 500
   end
 
+  error 401 do
+    slim :'errors/unauthorized'
+  end
+
   error 403 do
     slim :'errors/forbidden'
   end

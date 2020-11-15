@@ -8,6 +8,7 @@ require 'rack/protection'
 
 require "sinatra/reloader" if development?
 require 'sinatra/namespace'
+require 'sinatra/cookies'
 
 require 'sprockets'
 require 'therubyracer'
@@ -18,6 +19,7 @@ require 'slim'
 class Adventure < Sinatra::Base
   register Sinatra::ActiveRecordExtension
   register Sinatra::Namespace
+  helpers Sinatra::Cookies
 
   configure :development do
     register Sinatra::Reloader
@@ -40,6 +42,8 @@ class Adventure < Sinatra::Base
   # require models
   require_relative 'models/application_record'
   Dir['./models/*.rb'].each { |file| require_relative file }
+  Dir['./lib/*.rb'].each { |file| require_relative file }
+
   # require routes
   Dir['./routes/*.rb'].each { |file| require_relative file }
 

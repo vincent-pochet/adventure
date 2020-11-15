@@ -6,6 +6,35 @@ class Adventure < Sinatra::Base
       content_type 'application/json'
     end
 
+    get '/session' do
+      role = request.cookies["role"]
+
+      {
+        connected: ::Role.valid_role?(role),
+        role: role,
+      }.to_json
+    end
+
+    post '/session' do
+      body = JSON.parse(request.body.read, symbolize_names: true)
+
+      role = ::Role.get_role(body[:password])
+
+      return 401 unless role
+
+      response.set_cookie(
+        'role',
+        value: role,
+        domain: ENV['APP_DOMAIN'],
+        expires: Time.now + 1.month,
+      )
+
+      {
+        connected: true,
+        role: role,
+      }.to_json
+    end
+
     get '/days' do
       days = Day.order(number: :asc)
 

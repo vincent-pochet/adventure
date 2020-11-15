@@ -38,6 +38,7 @@ class Adventure < Sinatra::Base
   require_relative "config/environment"
 
   # require models
+  require_relative 'models/application_record'
   Dir['./models/*.rb'].each { |file| require_relative file }
   # require routes
   Dir['./routes/*.rb'].each { |file| require_relative file }

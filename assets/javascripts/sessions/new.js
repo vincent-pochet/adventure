@@ -37,7 +37,7 @@ const NewSession = {
       .then(response => {
         sessionStore.store(response);
 
-        router.replace('/');
+        router.push('/');
       })
       .catch(error => {
         if (error.message == '401') {

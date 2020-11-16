@@ -6,7 +6,7 @@ function handleErrors(response) {
 }
 
 function redirectToErrors(error) {
-  if (error.message == '403')
+  if (error.message == '403' || error.message == '401')
     window.location.href = "/403";
   else if (error.message == '404')
     router.replace('/404');

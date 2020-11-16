@@ -27,6 +27,8 @@ GEM
     puma (5.0.4)
       nio4r (~> 2.0)
     rack (2.2.3)
+    rack-contrib (2.2.0)
+      rack (~> 2.0)
     rack-protection (2.1.0)
       rack
     rake (13.0.1)
@@ -74,6 +76,7 @@ DEPENDENCIES
   execjs
   pg (~> 1.0)
   puma
+  rack-contrib
   rake
   sinatra (= 2.1.0)
   sinatra-activerecord

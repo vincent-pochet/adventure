@@ -23,10 +23,12 @@ class Adventure < Sinatra::Base
       return 401 unless role
 
       response.set_cookie(
-        'role',
+        "role",
         value: role,
-        domain: ENV['APP_DOMAIN'],
-        expires: Time.now + 1.month,
+        expires: Time.new(2021,6,15),
+        path: '/',
+        secure: true,
+        httponly: true,
       )
 
       {
@@ -36,6 +38,8 @@ class Adventure < Sinatra::Base
     end
 
     get '/days' do
+      return 401 unless authenticated?
+
       days = Day.order(number: :asc)
 
       today = Date.today.day
@@ -51,6 +55,8 @@ class Adventure < Sinatra::Base
     end
 
     get '/days/:number' do
+      return 401 unless authenticated?
+
       day = Day.find_by(number: params[:number])
 
       return 404 unless day
@@ -66,6 +72,8 @@ class Adventure < Sinatra::Base
     end
 
     post '/days/:number' do
+      return 401 unless authenticated?
+
       day = Day.find_by(number: params[:number])
 
       return 404 unless day
@@ -81,6 +89,10 @@ class Adventure < Sinatra::Base
           content: day.content,
         }
       }.to_json
+    end
+
+    def authenticated?
+      ::Role.valid_role?(request.cookies["role"])
     end
 
     error 403 do

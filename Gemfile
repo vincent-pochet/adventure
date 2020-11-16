@@ -11,6 +11,7 @@ gem "rake"
 gem 'pg', '~> 1.0'
 gem 'bcrypt'
 gem 'puma'
+gem 'rack-contrib'
 
 gem 'slim'
 gem 'sprockets'

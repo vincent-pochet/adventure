@@ -5,6 +5,7 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require 'bcrypt'
 require 'rack/protection'
+require 'rack/contrib'
 
 require "sinatra/reloader" if development?
 require 'sinatra/namespace'
@@ -19,6 +20,7 @@ require 'slim'
 class Adventure < Sinatra::Base
   register Sinatra::ActiveRecordExtension
   register Sinatra::Namespace
+  use Rack::Cookies
   helpers Sinatra::Cookies
 
   configure :development do
@@ -35,6 +37,8 @@ class Adventure < Sinatra::Base
 
   set :root, File.dirname(__FILE__)
   set :public_folder, File.dirname(__FILE__) + '/public'
+
+  set :session_secret, ENV['SESSION_SECRET']
 
   # require config
   require_relative "config/environment"

@@ -1,0 +1,37 @@
+.session-form {
+  text-align: center;
+  font-family: Raleway;
+  margin-top: 200px;
+}
+
+.session-form input {
+  display: inline-block;
+  font-size: 1.333em;
+  font-weight: bold;
+  margin: 1em 0;
+  padding: 0.4em 0.8em;
+  text-align: center;
+  white-space: nowrap;
+  text-decoration: none;
+  font-size: 30px;
+  max-width: 300px;
+}
+
+.session-form button {
+  font-family: Raleway Italic;
+  font-size: 1.333em;
+  font-weight: bold;
+  display: inline-block;
+  margin: 1em 0;
+  padding: 0.4em 0.8em;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-decoration: none;
+  color: #ffffff;
+  border: 0;
+  border-radius: 0.2em;
+  background-color: rgb(3, 34, 96);
+  cursor: pointer;
+  font-size: 30px;
+}

@@ -7,10 +7,12 @@ const NewSession = {
   },
   template: `
     <div class="session-new">
-      <form class="session-form" ref="session" v-on:submit.prevent="submit">
-        <input type="password" v-model="password" />
+      <h1>Connectez-vous pour accéder au calendrier</h1>
+      <form class="session-form" ref="session" @submit.prevent="login">
+        <input required type="password" v-model="password" placeholder="Mot de passe" />
         <span class="error-message" v-if="error_message">{{error_message}}</span>
-        <button class="submit-button" v-on:click="submit">Connexion</button>
+        <br/>
+        <button type="submit" class="submit-button">Connexion</button>
       </form>
     </div>
   `,
@@ -20,7 +22,7 @@ const NewSession = {
     }
   },
   methods: {
-    submit: function() {
+    login: function() {
       fetch('/api/session', {
         method: 'POST',
         headers: {
@@ -33,7 +35,7 @@ const NewSession = {
       .then(handleErrors)
       .then(response => response.json())
       .then(response => {
-        this.session = response;
+        sessionStore.store(response);
 
         router.replace('/');
       })

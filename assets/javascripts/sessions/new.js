@@ -10,6 +10,7 @@ const NewSession = {
       <h1>Connectez-vous pour accéder au calendrier</h1>
       <form class="session-form" ref="session" @submit.prevent="login">
         <input required type="password" v-model="password" placeholder="Mot de passe" />
+        <br/>
         <span class="error-message" v-if="error_message">{{error_message}}</span>
         <br/>
         <button type="submit" class="submit-button">Connexion</button>
@@ -25,6 +26,8 @@ const NewSession = {
   },
   methods: {
     login: function() {
+      this.error_message = null;
+
       fetch('/api/session', {
         method: 'POST',
         headers: {

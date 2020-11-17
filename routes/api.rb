@@ -8,9 +8,7 @@ class Adventure < Sinatra::Base
 
     post '/session' do
       body = JSON.parse(request.body.read, symbolize_names: true)
-
       role = ::Role.get_role(body[:password])
-
       return 401 unless role
 
       response.set_cookie(

@@ -28,4 +28,32 @@
   margin-top: 50px;
   text-align: center;
   display: block;
+  width: 560px;
+  height: 315px;
+}
+
+.embed iframe {
+  width: 560px;
+  height: 315px;
+  margin: 0 auto;
+  display: block;
+}
+
+
+@media screen and (max-width: 640px) {
+  .embed {
+    margin-top: 50px;
+    text-align: center;
+    display: block;
+    width: 80vw;
+    height: 44vw;
+  }
+
+  .embed iframe {
+    width: 80vw;
+    height: 44vw;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+  }
 }

@@ -35,3 +35,7 @@
   cursor: pointer;
   font-size: 30px;
 }
+
+.session-form .error-message {
+  color: red;
+}

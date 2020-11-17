@@ -8,6 +8,10 @@ class Role
   end
 
   def self.get_role(password)
-    'admin'
+    if password == ENV['ADMIN_PASSWORD']
+      return 'admin'
+    elsif password == ENV['USER_PASSWORD']
+      return 'visitor'
+    end
   end
 end

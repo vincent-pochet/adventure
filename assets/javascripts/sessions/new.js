@@ -17,8 +17,10 @@ const NewSession = {
     </div>
   `,
   created() {
-    if (this.session) {
-      router.replace('/');
+    sessionStore.loadSession();
+
+    if (sessionStore.session) {
+      router.replace('/days');
     }
   },
   methods: {

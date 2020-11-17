@@ -1,16 +1,23 @@
 var sessionStore = {
   session: null,
   loadSession: function() {
+    if (sessionStore.session) return;
+
     var localSession = localStorage.getItem('session');
 
     if (localSession) {
-      this.session = JSON.parse(localSession);
-      return;
+      var storageSession = JSON.parse(localSession);
+
+      if (storageSession.role) {
+        sessionStore.session = storageSession;
+        return;
+      }
     }
 
-    var distantSession = this.fetchSession();
+    var distantSession = sessionStore.fetchSession();
     sessionStore.store(distantSession);
   },
+
   fetchSession: async function() {
     fetch('/api/session')
       .then(handleErrors)
@@ -20,17 +27,9 @@ var sessionStore = {
       })
       .catch(redirectToErrors)
   },
+
   store: function(session) {
     sessionStore.session = session;
     localStorage.setItem('session', JSON.stringify(session));
-  },
-  checkAuthentication: function(to, from, next) {
-    sessionStore.loadSession();
-
-    if (!sessionStore.session) {
-      next('/session')
-    }
-
-    next()
   }
 };

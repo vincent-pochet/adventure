@@ -40,13 +40,13 @@ class Adventure < Sinatra::Base
 
   set :session_secret, ENV['SESSION_SECRET']
 
-  use Rack::Session::Cookie,
-    key: 'rack.session',
-    domain: ENV['APP_DOMAIN'],
-    path:  '/',
-    expire_after:  2592000,
-    secret: ENV['SESSION_SECRET'],
-    old_secret: ENV['OLD_SESSION_SECRET']
+  # use Rack::Session::Cookie,
+  #   key: 'rack.session',
+  #   domain: ENV['APP_DOMAIN'],
+  #   path:  '/',
+  #   expire_after:  2592000,
+  #   secret: ENV['SESSION_SECRET'],
+  #   old_secret: ENV['OLD_SESSION_SECRET']
 
   # require config
   require_relative "config/environment"

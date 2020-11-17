@@ -39,7 +39,7 @@ const NewSession = {
       .then(response => {
         sessionStore.store(response);
 
-        router.push('/');
+        router.push('/days');
       })
       .catch(error => {
         if (error.message == '401') {

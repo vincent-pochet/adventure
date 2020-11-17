@@ -2,7 +2,7 @@ const needAuthentication = function(to, from, next) {
   sessionStore.loadSession();
 
   if (!sessionStore.session) {
-    next('/session');
+    next('/');
     return;
   }
 

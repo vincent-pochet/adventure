@@ -6,15 +6,6 @@ class Adventure < Sinatra::Base
       content_type 'application/json'
     end
 
-    get '/session' do
-      role = request.cookies["role"]
-
-      {
-        connected: ::Role.valid_role?(role),
-        role: role,
-      }.to_json
-    end
-
     post '/session' do
       body = JSON.parse(request.body.read, symbolize_names: true)
 
@@ -24,15 +15,10 @@ class Adventure < Sinatra::Base
 
       response.set_cookie(
         "role",
-        value: role,
-        expires: Time.new(2021,6,15),
-        path: '/',
-        secure: true,
-        httponly: true,
+        value: role
       )
 
       {
-        connected: true,
         role: role,
       }.to_json
     end
@@ -73,11 +59,11 @@ class Adventure < Sinatra::Base
 
     post '/days/:number' do
       return 401 unless authenticated?
+      return 403 unless admin_role?
 
       day = Day.find_by(number: params[:number])
 
       return 404 unless day
-      # TODO: check permission
 
       body = JSON.parse(request.body.read, symbolize_names: true)
       day.update!(content: body.dig(:day, :content))
@@ -93,6 +79,10 @@ class Adventure < Sinatra::Base
 
     def authenticated?
       ::Role.valid_role?(request.cookies["role"])
+    end
+
+    def admin_role?
+      request.cookies["role"] == 'admin'
     end
 
     error 403 do

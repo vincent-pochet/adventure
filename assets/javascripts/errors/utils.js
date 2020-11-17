@@ -7,7 +7,7 @@ function handleErrors(response) {
 
 function redirectToErrors(error) {
   if (error.message == '401')
-    router.replace('/session');
+    router.replace('/');
   else if (error.message == '403')
     window.location.href = "/403";
   else if (error.message == '404')

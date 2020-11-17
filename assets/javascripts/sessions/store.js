@@ -3,33 +3,25 @@ var sessionStore = {
   loadSession: function() {
     if (sessionStore.session) return;
 
-    var localSession = localStorage.getItem('session');
+    const localSession = localStorage.getItem('session');
+    if (!localSession) return;
 
-    if (localSession) {
-      var storageSession = JSON.parse(localSession);
+    var storageSession = JSON.parse(localSession);
+    if (!storageSession.role) return;
 
-      if (storageSession.role) {
-        sessionStore.session = storageSession;
-        return;
-      }
+    const now = new Date()
+    if (now.getTime() > storageSession.expiry) {
+      localStorage.removeItem(key)
+      return
     }
 
-    var distantSession = sessionStore.fetchSession();
-    sessionStore.store(distantSession);
-  },
-
-  fetchSession: async function() {
-    fetch('/api/session')
-      .then(handleErrors)
-      .then(response => response.json())
-      .then(response => {
-        resolve(response);
-      })
-      .catch(redirectToErrors)
+    sessionStore.session = storageSession;
   },
 
   store: function(session) {
+    const now = new Date();
     sessionStore.session = session;
+    sessionStore.session.expiry = now.getTime() + 2592000; // 30 days
     localStorage.setItem('session', JSON.stringify(session));
   }
 };

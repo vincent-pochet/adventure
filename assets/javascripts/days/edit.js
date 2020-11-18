@@ -36,7 +36,8 @@ const DayEdit = {
     submit: function () {
       fetch(`/api/days/${this.$route.params.id}`, {
         method: 'POST',
-        credentials: 'include',
+        mode: 'same-origin',
+        credentials: 'same-origin',
         headers: {
           'content-type': 'application/json',
           'Access-Control-Allow-Origin': '*',

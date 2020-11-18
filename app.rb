@@ -29,6 +29,8 @@ class Adventure < Sinatra::Base
     also_reload 'routes/*.rb'
   end
 
+  enable :logging
+
   configure :production do
     require 'rack/ssl'
     use Rack::SSL

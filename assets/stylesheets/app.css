@@ -25,6 +25,21 @@ h1 {
   margin-right: 40px;
 }
 
+.day-list .intro {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.day-list .intro p {
+  font-family: Raleway;
+  margin: auto;
+  width: 80%;
+  max-width: 1000px;
+  margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
 .day-item {
   background: url(/assets/card-bg.png) no-repeat center;
   background-size: cover;

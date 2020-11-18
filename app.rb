@@ -28,6 +28,10 @@ class Adventure < Sinatra::Base
     also_reload 'routes/*.rb'
   end
 
+  configure :production do
+    set :force_ssl, true
+  end
+
   set :root, File.dirname(__FILE__)
   set :public_folder, File.dirname(__FILE__) + '/public'
 

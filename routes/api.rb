@@ -19,7 +19,11 @@ class Adventure < Sinatra::Base
 
       response.set_cookie(
         "role",
-        value: role, # TODO: encrypt
+        value: encryptor.encrypt(role),
+        secure: true,
+        httponly: true,
+        path: '/',
+        expires: Time.now + 30.days,
       )
 
       { role: role }.to_json
@@ -79,12 +83,16 @@ class Adventure < Sinatra::Base
       }.to_json
     end
 
+    def cookie_role
+      @role ||= encryptor.decrypt(request.cookies["role"])
+    end
+
     def authenticated?
-      ::Role.valid_role?(request.cookies["role"])
+      ::Role.valid_role?(cookie_role)
     end
 
     def admin_role?
-      request.cookies["role"] == 'admin'
+      cookie_role == 'admin'
     end
 
     error 403 do
@@ -99,6 +107,10 @@ class Adventure < Sinatra::Base
         code: 404,
         message: 'not_found'
       }.to_json
+    end
+
+    def encryptor
+      Encryptor.new(ENV['SESSION_SECRET'])
     end
   end
 end

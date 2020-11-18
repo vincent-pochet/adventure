@@ -9,7 +9,6 @@ require 'rack/contrib'
 
 require "sinatra/reloader" if development?
 require 'sinatra/namespace'
-require 'sinatra/cookies'
 
 require 'sprockets'
 require 'therubyracer'
@@ -21,7 +20,6 @@ class Adventure < Sinatra::Base
   register Sinatra::ActiveRecordExtension
   register Sinatra::Namespace
   use Rack::Cookies
-  helpers Sinatra::Cookies
 
   configure :development do
     register Sinatra::Reloader
@@ -30,23 +28,8 @@ class Adventure < Sinatra::Base
     also_reload 'routes/*.rb'
   end
 
-  set :sessions, true
-
-  # session support for your app
-  use Rack::Session::Pool
-
   set :root, File.dirname(__FILE__)
   set :public_folder, File.dirname(__FILE__) + '/public'
-
-  set :session_secret, ENV['SESSION_SECRET']
-
-  # use Rack::Session::Cookie,
-  #   key: 'rack.session',
-  #   domain: ENV['APP_DOMAIN'],
-  #   path:  '/',
-  #   expire_after:  2592000,
-  #   secret: ENV['SESSION_SECRET'],
-  #   old_secret: ENV['OLD_SESSION_SECRET']
 
   # require config
   require_relative "config/environment"
@@ -58,6 +41,4 @@ class Adventure < Sinatra::Base
 
   # require routes
   Dir['./routes/*.rb'].each { |file| require_relative file }
-
-  use Rack::Protection
 end

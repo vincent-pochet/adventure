@@ -81,6 +81,7 @@ h1 {
 
 .day-show p, .day-edit p {
   text-align: justify;
+  text-indent: 2em;
 }
 
 .day-show h2, .day-edit h2 {
@@ -99,9 +100,14 @@ h1 {
   height: 315px;
 }
 
-.day-show h3, .day-edit h3 {
+.day-show h2, .day-edit h2 {
   font-family: DancingScript;
   font-size: 30px;
+}
+
+.day-show h3, .day-edit h3 {
+  font-family: DancingScript;
+  font-size: 25px;
 }
 
 .day-show .day-content {

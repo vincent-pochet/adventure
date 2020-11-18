@@ -104,12 +104,12 @@ h1 {
 
 .day-show h2, .day-edit h2 {
   font-family: DancingScript;
-  font-size: 30px;
+  font-size: 3em;
 }
 
 .day-show h3, .day-edit h3 {
   font-family: DancingScript;
-  font-size: 25px;
+  font-size: 2em;
 }
 
 .day-show .day-content {

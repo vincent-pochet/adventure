@@ -12,6 +12,7 @@ gem 'pg', '~> 1.0'
 gem 'bcrypt'
 gem 'puma'
 gem 'rack-contrib'
+gem 'rack-ssl'
 
 gem 'slim'
 gem 'sprockets'

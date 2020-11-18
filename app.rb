@@ -10,6 +10,7 @@ require 'rack/contrib'
 require "sinatra/reloader" if development?
 require 'sinatra/namespace'
 
+
 require 'sprockets'
 require 'therubyracer'
 require 'uglifier'
@@ -29,7 +30,8 @@ class Adventure < Sinatra::Base
   end
 
   configure :production do
-    set :force_ssl, true
+    require 'rack/ssl'
+    use Rack::SSL
   end
 
   set :root, File.dirname(__FILE__)

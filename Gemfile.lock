@@ -31,6 +31,8 @@ GEM
       rack (~> 2.0)
     rack-protection (2.1.0)
       rack
+    rack-ssl (1.4.1)
+      rack
     rake (13.0.1)
     ref (2.0.0)
     ruby2_keywords (0.0.2)
@@ -77,6 +79,7 @@ DEPENDENCIES
   pg (~> 1.0)
   puma
   rack-contrib
+  rack-ssl
   rake
   sinatra (= 2.1.0)
   sinatra-activerecord

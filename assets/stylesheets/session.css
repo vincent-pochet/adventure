@@ -39,3 +39,9 @@
 .session-form .error-message {
   color: red;
 }
+
+@media screen and (max-width: 640px) {
+  .session-form {
+    margin-top: 150px;
+  }
+}

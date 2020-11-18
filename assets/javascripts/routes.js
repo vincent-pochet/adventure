@@ -1,21 +1,10 @@
-const needAuthentication = function(to, from, next) {
-  sessionStore.loadSession();
-
-  if (!sessionStore.session) {
-    next('/');
-    return;
-  }
-
-  next()
-}
-
 const router = new VueRouter({
   routes: [
-    { path: '/', component: NewSession },
-    { path: '/days', component: DayList, beforeEnter: needAuthentication },
-    { path: '/days/:id', component: DayShow, beforeEnter: needAuthentication },
-    { path: '/days/:id/edit', component: DayEdit, beforeEnter: needAuthentication },
-    { path: '/404', component: NotFound, beforeEnter: needAuthentication },
+    { path: '/', component: DayList },
+    { path: '/days/:id', component: DayShow },
+    { path: '/days/:id/edit', component: DayEdit },
+    { path: '/session', component: NewSession },
+    { path: '/404', component: NotFound },
     { path: '*', redirect: '/404' },
   ]
 })

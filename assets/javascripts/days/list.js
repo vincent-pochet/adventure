@@ -10,9 +10,11 @@ const DayList = {
   `,
   created() {
     fetch('/api/days')
+      .then(handleErrors)
       .then(response => response.json())
       .then(response => {
         this.days = response.days;
       })
+      .catch(redirectToErrors)
   }
 }

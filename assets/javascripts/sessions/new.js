@@ -18,11 +18,7 @@ const NewSession = {
     </div>
   `,
   created() {
-    sessionStore.loadSession();
-
-    if (sessionStore.session) {
-      router.replace('/days');
-    }
+    // TODO: call /me if 200 redirect
   },
   methods: {
     login: function() {
@@ -38,12 +34,7 @@ const NewSession = {
         })
       })
       .then(handleErrors)
-      .then(response => response.json())
-      .then(response => {
-        sessionStore.store(response);
-
-        router.push('/days');
-      })
+      .then(() => { router.push('/') })
       .catch(error => {
         if (error.message == '401') {
           this.error_message = 'Le mot de passe est invalide';

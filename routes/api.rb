@@ -6,6 +6,12 @@ class Adventure < Sinatra::Base
       content_type 'application/json'
     end
 
+    get '/me' do
+      role = request.cookies["role"]
+
+      { role: role }.to_json
+    end
+
     post '/session' do
       body = JSON.parse(request.body.read, symbolize_names: true)
       role = ::Role.get_role(body[:password])
@@ -13,12 +19,10 @@ class Adventure < Sinatra::Base
 
       response.set_cookie(
         "role",
-        value: role
+        value: role, # TODO: encrypt
       )
 
-      {
-        role: role,
-      }.to_json
+      { role: role }.to_json
     end
 
     get '/days' do

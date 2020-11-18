@@ -98,6 +98,8 @@ h1 {
 .day-show p.embed iframe, .day-edit p.embed iframe {
   width: 560px;
   height: 315px;
+  margin: 0 auto;
+  display: block;
 }
 
 .day-show h2, .day-edit h2 {

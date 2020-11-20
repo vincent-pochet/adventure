@@ -52,7 +52,10 @@ class Adventure < Sinatra::Base
       day = Day.find_by(number: params[:number])
 
       return 404 unless day
-      return 403 if Date.today.day < day.number
+
+      if Date.today.day < day.number
+        return 403 unless admin_role?
+      end
 
       {
         day: {

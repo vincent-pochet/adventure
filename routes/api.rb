@@ -38,8 +38,8 @@ class Adventure < Sinatra::Base
       json = days.map do |day|
         {
           number: day.number,
-          visible: today >= day.number,
-          today: today == day.number,
+          visible: today >= day.number && today.month == 12,
+          today: today == day.number && today.month == 12,
         }
       end
 

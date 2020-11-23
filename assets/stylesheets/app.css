@@ -102,6 +102,23 @@ h1 {
   display: block;
 }
 
+.day-show p.image img, .day-edit p.image img {
+  max-width: 400px;
+  margin: 0 auto;
+  display: block;
+}
+
+.day-show div.double-image div, .day-edit div.double-image div {
+  max-width: 520px;
+  margin: 0 auto;
+  display: block;
+}
+
+.day-show div.double-image div img, .day-edit div.double-image div img {
+  max-width: 250px;
+  display: inline-block;
+}
+
 .day-show h2, .day-edit h2 {
   font-family: DancingScript;
   font-size: 3em;

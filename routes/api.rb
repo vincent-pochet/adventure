@@ -34,12 +34,11 @@ class Adventure < Sinatra::Base
 
       days = Day.order(number: :asc)
 
-      today = Date.today.day
       json = days.map do |day|
         {
           number: day.number,
-          visible: today >= day.number && today.month == 12,
-          today: today == day.number && today.month == 12,
+          visible: day.visible?,
+          today: day.visible?,
         }
       end
 
@@ -53,7 +52,7 @@ class Adventure < Sinatra::Base
 
       return 404 unless day
 
-      if Date.today.day < day.number
+      unless day.visible?
         return 403 unless admin_role?
       end
 
@@ -62,6 +61,8 @@ class Adventure < Sinatra::Base
           number: day.number,
           content_type: day.content_type,
           content: day.content,
+          has_next: day.next? || admin_role?,
+          has_previous: day.previous? || admin_role?,
         }
       }.to_json
     end

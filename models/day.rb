@@ -20,12 +20,12 @@ class Day < ApplicationRecord
   def next?
     next_day = Day.find_by(number: number + 1)
 
-    next_day.visible?
+    next_day&.visible?
   end
 
   def previous?
     previous_day = Day.find_by(number: number - 1)
 
-    previous_day.visible?
+    previous_day&.visible?
   end
 end

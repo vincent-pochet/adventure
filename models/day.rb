@@ -8,13 +8,13 @@ class Day < ApplicationRecord
   def visible?
     today = Date.today.day
 
-    today >= number && today.month == 12
+    today >= number
   end
 
   def today?
     today = Date.today.day
 
-    today == number && today.month == 12
+    today == number
   end
 
   def next?

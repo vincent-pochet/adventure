@@ -17,13 +17,21 @@ class Day < ApplicationRecord
     today.day == number && today.month == 12
   end
 
-  def has_visible_next?
+  def next?
+    Day.exists?(number: number + 1)
+  end
+
+  def visible_next?
     next_day = Day.find_by(number: number + 1)
 
     next_day&.visible?
   end
 
-  def has_visible_previous?
+  def previous?
+    Day.exists?(number: number - 1)
+  end
+
+  def visible_previous?
     previous_day = Day.find_by(number: number - 1)
 
     previous_day&.visible?

@@ -133,7 +133,27 @@ h1 {
   margin-bottom: 50px;
 }
 
-.day-show .back-link, .day-edit .back-link {
+.day-show .navigation-link {
+  display: inline-block;
+  width: 32%;
+  margin: 0;
+  padding: 0;
+}
+
+.day-show .navigation-link a {
+  width: 100%;
+  display: inline-block;
+}
+
+.day-show .back-link {
+  text-align: center;
+}
+
+.day-show .next-link {
+  text-align: right;
+}
+
+.day-show .navigation-link a, .day-edit .back-link {
   font-family: Raleway;
   color: rgb(3, 34, 96);
   text-decoration: none;

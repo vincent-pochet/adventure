@@ -10,7 +10,7 @@ html
 
   body
     #container.content
-      router-view
+      router-view*{ ':key' => "$route.fullPath" }
 
     footer
       script src="/assets/app.js"

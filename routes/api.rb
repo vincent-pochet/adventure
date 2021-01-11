@@ -37,7 +37,7 @@ class Adventure < Sinatra::Base
       json = days.map do |day|
         {
           number: day.number,
-          visible: day.visible?,
+          visible: day.visible? || admin_role?,
           today: day.today?,
         }
       end
@@ -58,8 +58,8 @@ class Adventure < Sinatra::Base
           number: day.number,
           content_type: day.content_type,
           content: day.content,
-          has_next: day.has_visible_next? || admin_role?,
-          has_previous: day.has_visible_previous? || admin_role?,
+          has_visible_next: day.visible_next? || admin_role? && day.next?,
+          has_visible_previous: day.visible_previous? || admin_role? && day.previous?,
         }
       }.to_json
     end

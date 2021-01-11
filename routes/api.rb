@@ -80,6 +80,8 @@ class Adventure < Sinatra::Base
           number: day.number,
           content_type: day.content_type,
           content: day.content,
+          has_visible_next: day.visible_next? || admin_role? && day.next?,
+          has_visible_previous: day.visible_previous? || admin_role? && day.previous?,
         }
       }.to_json
     end

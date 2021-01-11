@@ -2,5 +2,6 @@
 //= require_tree
 
 const app = new Vue({
-  router
+  router,
+  i18n
 }).$mount('#container')

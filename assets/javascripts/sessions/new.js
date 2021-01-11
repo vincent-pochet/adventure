@@ -7,13 +7,13 @@ const NewSession = {
   },
   template: `
     <div class="session-new">
-      <h1>Connectez-vous pour accéder au calendrier</h1>
+      <h1>{{ $t('sessions.connect_title') }}</h1>
       <form class="session-form" ref="session" @submit.prevent="login">
-        <input required type="password" v-model="password" placeholder="Mot de passe" />
+        <input required type="password" v-model="password" :placeholder="$t('sessions.password')" />
         <br/>
         <span class="error-message" v-if="error_message">{{error_message}}</span>
         <br/>
-        <button type="submit" class="submit-button">Connexion</button>
+        <button type="submit" class="submit-button">{{ $t('sessions.connect_button') }}</button>
       </form>
     </div>
   `,

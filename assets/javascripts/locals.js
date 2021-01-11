@@ -1,3 +1,5 @@
+const supportedLocals = ['en', 'fr'];
+
 const messages = {
   en: {
     days: {
@@ -37,7 +39,13 @@ const messages = {
   }
 }
 
+const detectBrowserLanguage = function() {
+  var userLang = navigator.language || navigator.userLanguage;
+
+  return supportedLocals.includes(userLang) ? userLang : 'en';
+}
+
 const i18n = new VueI18n({
-  locale: 'en',
+  locale: detectBrowserLanguage(),
   messages,
 })

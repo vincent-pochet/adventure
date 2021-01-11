@@ -23,7 +23,7 @@ class Adventure < Sinatra::Base
         secure: true,
         httponly: true,
         path: '/',
-        expires: Time.now + 30.days,
+        expires: Time.now + 30.days
       )
 
       { role: role }.to_json
@@ -33,7 +33,7 @@ class Adventure < Sinatra::Base
       return 401 unless authenticated?
 
       settings = Setting.where(
-        locale: I18n.default_locale, # TODO: params['locale'] || I18n.default_locale,
+        locale: I18n.default_locale # TODO: params['locale'] || I18n.default_locale,
       )
 
       settings = settings.where(key: params['keys']) if params['keys']
@@ -41,7 +41,7 @@ class Adventure < Sinatra::Base
       json = settings.map do |setting|
         {
           key: setting.key,
-          value: setting.value,
+          value: setting.value
         }
       end
 
@@ -57,7 +57,7 @@ class Adventure < Sinatra::Base
         {
           number: day.number,
           visible: day.visible? || admin_role?,
-          today: day.today?,
+          today: day.today?
         }
       end
 
@@ -77,7 +77,7 @@ class Adventure < Sinatra::Base
           number: day.number,
           content: day.content,
           has_visible_next: day.visible_next? || admin_role? && day.next?,
-          has_visible_previous: day.visible_previous? || admin_role? && day.previous?,
+          has_visible_previous: day.visible_previous? || admin_role? && day.previous?
         }
       }.to_json
     end
@@ -98,7 +98,7 @@ class Adventure < Sinatra::Base
           number: day.number,
           content: day.content,
           has_visible_next: day.visible_next? || admin_role? && day.next?,
-          has_visible_previous: day.visible_previous? || admin_role? && day.previous?,
+          has_visible_previous: day.visible_previous? || admin_role? && day.previous?
         }
       }.to_json
     end

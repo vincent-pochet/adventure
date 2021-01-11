@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'openssl'
 
 class Encryptor
@@ -19,8 +21,8 @@ class Encryptor
     # reduced key space.  Also, the personalisation strings further help
     # reduce the possibility of key reuse by ensuring it should be unique
     # to this gem, even with shared secrets.
-    @encryption_key     = hmac("EncryptedCookie Encryption",     secret)
-    @authentication_key = hmac("EncryptedCookie Authentication", secret)
+    @encryption_key     = hmac('EncryptedCookie Encryption', secret)
+    @authentication_key = hmac('EncryptedCookie Authentication', secret)
   end
 
   # Encrypts message
@@ -42,9 +44,9 @@ class Encryptor
   def decrypt(ciphertext)
     return unless ciphertext
 
-    ciphertext = ciphertext.unpack('m').first
+    ciphertext = ciphertext.unpack1('m')
     tag        = ciphertext[0, hmac_length]
-    ciphertext = ciphertext[hmac_length..-1]
+    ciphertext = ciphertext[hmac_length..]
 
     # make sure we actually had enough data for the tag too.
     if tag && ciphertext && verify_message(tag, ciphertext)
@@ -103,11 +105,11 @@ class Encryptor
     aes.key = @encryption_key
     iv = ciphertext[0, aes.iv_len]
     aes.iv = iv
-    crypted_text = ciphertext[aes.iv_len..-1]
+    crypted_text = ciphertext[aes.iv_len..]
     return nil if crypted_text.nil? || iv.nil?
+
     aes.update(crypted_text) << aes.final
   rescue
     nil
   end
-
 end

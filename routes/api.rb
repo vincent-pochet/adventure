@@ -7,7 +7,7 @@ class Adventure < Sinatra::Base
     end
 
     get '/me' do
-      role = request.cookies["role"]
+      role = request.cookies['role']
 
       { role: role }.to_json
     end
@@ -18,7 +18,7 @@ class Adventure < Sinatra::Base
       return 401 unless role
 
       response.set_cookie(
-        "role",
+        'role',
         value: encryptor.encrypt(role),
         secure: true,
         httponly: true,
@@ -38,7 +38,7 @@ class Adventure < Sinatra::Base
         {
           number: day.number,
           visible: day.visible?,
-          today: day.visible?,
+          today: day.today?,
         }
       end
 
@@ -51,18 +51,15 @@ class Adventure < Sinatra::Base
       day = Day.find_by(number: params[:number])
 
       return 404 unless day
-
-      unless day.visible?
-        return 403 unless admin_role?
-      end
+      return 403 unless day.visible? || admin_role?
 
       {
         day: {
           number: day.number,
           content_type: day.content_type,
           content: day.content,
-          has_next: day.next? || admin_role?,
-          has_previous: day.previous? || admin_role?,
+          has_next: day.has_visible_next? || admin_role?,
+          has_previous: day.has_visible_previous? || admin_role?,
         }
       }.to_json
     end
@@ -88,7 +85,7 @@ class Adventure < Sinatra::Base
     end
 
     def cookie_role
-      @role ||= encryptor.decrypt(request.cookies["role"])
+      @cookie_role ||= encryptor.decrypt(request.cookies['role'])
     end
 
     def authenticated?

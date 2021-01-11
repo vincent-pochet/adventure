@@ -6,24 +6,24 @@ class Day < ApplicationRecord
   validates :content, presence: true
 
   def visible?
-    today = Date.today.day
+    today = Date.today
 
-    today >= number
+    today.day >= number && today.month == 12
   end
 
   def today?
-    today = Date.today.day
+    today = Date.today
 
-    today == number
+    today.day == number && today.month == 12
   end
 
-  def next?
+  def has_visible_next?
     next_day = Day.find_by(number: number + 1)
 
     next_day&.visible?
   end
 
-  def previous?
+  def has_visible_previous?
     previous_day = Day.find_by(number: number - 1)
 
     previous_day&.visible?

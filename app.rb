@@ -7,9 +7,8 @@ require 'bcrypt'
 require 'rack/protection'
 require 'rack/contrib'
 
-require "sinatra/reloader" if development?
+require 'sinatra/reloader' if development?
 require 'sinatra/namespace'
-
 
 require 'sprockets'
 require 'therubyracer'
@@ -37,10 +36,10 @@ class Adventure < Sinatra::Base
   end
 
   set :root, File.dirname(__FILE__)
-  set :public_folder, File.dirname(__FILE__) + '/public'
+  set :public_folder, File.join(File.dirname(__FILE__), 'public')
 
   # require config
-  require_relative "config/environment"
+  require_relative 'config/environment'
 
   # require models
   require_relative 'models/application_record'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_07_163424) do
+ActiveRecord::Schema.define(version: 2021_01_19_093126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,11 @@ ActiveRecord::Schema.define(version: 2020_11_07_163424) do
     t.text "introduction"
     t.text "content", null: false
     t.index ["number"], name: "index_days_on_number", unique: true
+  end
+
+  create_table "settings", force: :cascade do |t|
+    t.string "key", null: false
+    t.text "value", null: false
   end
 
 end

@@ -29,6 +29,19 @@ class Adventure < Sinatra::Base
       { role: role }.to_json
     end
 
+    get '/settings' do
+      return 401 unless authenticated?
+
+      json = Setting.all.map do |setting|
+        {
+          key: setting.key,
+          value: setting.value,
+        }
+      end
+
+      { settings: json }.to_json
+    end
+
     get '/days' do
       return 401 unless authenticated?
 

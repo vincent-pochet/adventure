@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_19_093126) do
+ActiveRecord::Schema.define(version: 2021_01_19_182528) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "days", force: :cascade do |t|
     t.integer "number", null: false
-    t.string "content_type", null: false
     t.text "introduction"
     t.text "content", null: false
-    t.index ["number"], name: "index_days_on_number", unique: true
+    t.string "locale", default: "en", null: false
+    t.index ["locale", "number"], name: "index_days_on_locale_and_number", unique: true
   end
 
   create_table "settings", force: :cascade do |t|

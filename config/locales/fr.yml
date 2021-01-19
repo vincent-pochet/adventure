@@ -3,3 +3,5 @@ fr:
     back_to_calendar: "Retour au calendrier"
   errors:
     fatal: "Oups..."
+  days:
+    default_month_name: Décembre

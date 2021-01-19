@@ -60,6 +60,7 @@ bundle exec puma -C config/puma.rb
 ## Production environment
 
 Make sure to define the following environment variables:
+- RACK_ENV=production
 - POSTGRES_URL
 - ADMIN_PASSWORD
 - USER_PASSWORD

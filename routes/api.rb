@@ -33,7 +33,7 @@ class Adventure < Sinatra::Base
       return 401 unless authenticated?
 
       settings = Setting.where(
-        locale: params['locale'] || nil # TODO default locale
+        locale: I18n.default_locale, # TODO: params['locale'] || I18n.default_locale,
       )
 
       settings = settings.where(key: params['keys']) if params['keys']
@@ -75,7 +75,6 @@ class Adventure < Sinatra::Base
       {
         day: {
           number: day.number,
-          content_type: day.content_type,
           content: day.content,
           has_visible_next: day.visible_next? || admin_role? && day.next?,
           has_visible_previous: day.visible_previous? || admin_role? && day.previous?,
@@ -97,7 +96,6 @@ class Adventure < Sinatra::Base
       {
         day: {
           number: day.number,
-          content_type: day.content_type,
           content: day.content,
           has_visible_next: day.visible_next? || admin_role? && day.next?,
           has_visible_previous: day.visible_previous? || admin_role? && day.previous?,

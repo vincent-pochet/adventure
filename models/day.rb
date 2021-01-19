@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class Day < ApplicationRecord
-  validates :number, presence: true, uniqueness: true
-  validates :content_type, presence: true
+  validates :number, presence: true, uniqueness: { scope: :locale }
   validates :content, presence: true
+  validates :locale, inclusion: { in: I18n.available_locales.map(&:to_s) }, allow_nil: true
 
   def visible?
     today = Date.today

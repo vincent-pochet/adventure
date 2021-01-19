@@ -33,8 +33,8 @@ const messages = {
     },
     sessions: {
       connect_title: "Connectez-vous pour accéder au calendrier",
-      password: "Password",
-      connect_button: "Connect",
+      password: "Mot de passe",
+      connect_button: "Connection",
     }
   }
 }

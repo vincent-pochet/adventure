@@ -26,6 +26,9 @@ ActiveRecord::Schema.define(version: 2021_01_19_093126) do
   create_table "settings", force: :cascade do |t|
     t.string "key", null: false
     t.text "value", null: false
+    t.string "locale"
+    t.index ["key"], name: "index_settings_on_key"
+    t.index ["locale"], name: "index_settings_on_locale"
   end
 
 end

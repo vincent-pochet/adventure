@@ -32,7 +32,13 @@ class Adventure < Sinatra::Base
     get '/settings' do
       return 401 unless authenticated?
 
-      json = Setting.all.map do |setting|
+      settings = Setting.where(
+        locale: params['locale'] || nil # TODO default locale
+      )
+
+      settings = settings.where(key: params['keys']) if params['keys']
+
+      json = settings.map do |setting|
         {
           key: setting.key,
           value: setting.value,

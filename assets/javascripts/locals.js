@@ -17,6 +17,7 @@ const messages = {
       connect_title: "Connect to see the calendar",
       password: "Password",
       connect_button: "Connect",
+      invalid_password: "Password is invalid",
     }
   },
   fr: {

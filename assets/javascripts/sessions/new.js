@@ -37,7 +37,7 @@ const NewSession = {
       .then(() => { router.push('/') })
       .catch(error => {
         if (error.message == '401') {
-          this.error_message = 'Le mot de passe est invalide';
+          this.error_message = this.$t('sessions.invalid_password');
         } else {
           redirectToErrors(error);
         }

@@ -36,6 +36,7 @@ const messages = {
       connect_title: "Connectez-vous pour accéder au calendrier",
       password: "Mot de passe",
       connect_button: "Connection",
+      invalid_password: "Le mot de passe est invalide",
     }
   }
 }

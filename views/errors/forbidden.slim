@@ -1,14 +1,17 @@
 doctype html
-html
+html lang=I18n.locale
   head
-    title Petit malin !
+    title = get_setting_value('error.forbidden')
     meta name="viewport" content="width=device-width, initial-scale=1"
     link rel="icon" type="image/png" href="/assets/logo.png"
     link rel='stylesheet' href='/assets/app.css'
 
     body
       .error
-        div Petit malin !
-        .embed
-          iframe src="https://www.youtube.com/embed/wHszQBd8HXM?controls=0&autoplay=+" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        a href='/' class="back-button" Retour au calendrier
+        div = get_setting_value('error.forbidden')
+
+        - if embed = get_setting_value('error.embed.forbidden')
+          .embed
+            == embed
+
+        a href='/' class="back-button" = I18n.t('navigation.back_to_calendar')

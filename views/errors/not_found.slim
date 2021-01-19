@@ -1,16 +1,17 @@
 doctype html
-html
+html lang=I18n.locale
   head
-    title Bahhh... on a rien trouvé ici...
+    title = get_setting_value('error.not_found')
     meta name="viewport" content="width=device-width, initial-scale=1"
     link rel="icon" type="image/png" href="/assets/logo.png"
     link rel='stylesheet' href='/assets/app.css'
 
     body
       .error
-        div Bahhh... on a rien trouvé ici...
+        div = get_setting_value('error.not_found')
 
-        .embed
-          iframe src="https://www.youtube.com/embed/3Ax1B6APqzc?controls=0&autoplay=+" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        - if embed = get_setting_value('error.embed.not_found')
+          .embed
+            == embed
 
-        a href='/' class="back-button" Retour au calendrier
+        a href='/' class="back-button" = I18n.t('navigation.back_to_calendar')

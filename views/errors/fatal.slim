@@ -1,12 +1,12 @@
 doctype html
-html
+html lang=I18n.locale
   head
-    title Oups....
+    title = I18n.t('errors.fatal')
     meta name="viewport" content="width=device-width, initial-scale=1"
     link rel="icon" type="image/png" href="/assets/logo.png"
     link rel='stylesheet' href='/assets/app.css'
 
     body
       .error
-        div Oups....
-        a href='/' class="back-button" Retour au calendrier
+        div = I18n.t('errors.fatal')
+        a href='/' class="back-button" = I18n.t('navigation.back_to_calendar')

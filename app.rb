@@ -26,6 +26,7 @@ class Adventure < Sinatra::Base
     enable :reloader
     also_reload 'models/*.rb'
     also_reload 'routes/*.rb'
+    also_reload 'helpers/*.rb'
   end
 
   enable :logging
@@ -39,13 +40,17 @@ class Adventure < Sinatra::Base
   set :public_folder, File.join(File.dirname(__FILE__), 'public')
 
   # require config
+  require_relative 'config/locale'
   require_relative 'config/environment'
 
   # require models
   require_relative 'models/application_record'
   Dir['./models/*.rb'].each { |file| require_relative file }
   Dir['./lib/*.rb'].each { |file| require_relative file }
+  Dir['./helpers/*.rb'].each { |file| require_relative file }
 
   # require routes
   Dir['./routes/*.rb'].each { |file| require_relative file }
+
+  helpers SettingsHelper, LocaleHelper
 end

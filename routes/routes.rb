@@ -5,6 +5,7 @@ class Adventure < Sinatra::Base
 
   before do
     content_type 'text/html; charset=utf-8'
+    I18n.locale = locale_from_http_header(request.env['HTTP_ACCEPT_LANGUAGE'])
   end
 
   get '/' do

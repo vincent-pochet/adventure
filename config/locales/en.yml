@@ -1,0 +1,5 @@
+en:
+  navigation:
+    back_to_calendar: Back to calendar
+  errors:
+    fatal: "Oups..."

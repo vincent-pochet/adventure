@@ -18,4 +18,5 @@ gem 'slim'
 gem 'sprockets'
 gem 'uglifier'
 gem 'execjs'
-gem 'therubyracer', :platforms => :ruby
+#gem 'therubyracer', :platforms => :ruby
+gem 'minitest', '>=5.16.3'
